@@ -1,4 +1,3 @@
-
 require 'handlebars/loader'
 
 module Handlebars
@@ -19,5 +18,10 @@ module Handlebars
     Handlebars.module_eval do
       @loader.require('handlebars')
     end
+  end
+  
+  def render_file(name, context = {})
+    template = compile(File.read("#{template_path}/#{name}.#{template_extension}"))
+    template.call(context)
   end
 end
